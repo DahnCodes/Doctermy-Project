@@ -1,0 +1,61 @@
+.footer-container {
+  background-color: #005A6C;
+  padding: 80px 0px;
+  color: #ffff;
+}
+.doc-image {
+  width: 154px;
+  height: 40.7px;
+}
+.first-footer {
+  width: 203px;
+}
+.first-footer p {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.footers {
+  margin: 0px 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.icons {
+  margin-top: 20px;
+  font-size: 24px;
+  display: flex;
+  gap: 20px;
+}
+.footer-list{
+    margin-top: 20px;
+}
+.footer-list li{
+    margin-top: 20px;
+    list-style: none;
+    font-size: 16px;
+    font-weight: 400;
+}
+.footer-lists{
+    margin-top: 20px; 
+}
+
+.footer-lists li{
+    margin-top: 20px;
+    list-style: none;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.line{
+  margin-left: 16.9%;
+  margin-top: 80px;
+}
+.copyright{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
