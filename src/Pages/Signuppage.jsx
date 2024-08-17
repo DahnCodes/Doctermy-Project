@@ -63,9 +63,10 @@ function SignUp() {
       const { confirmPassword, ...submitData } = formData;
 
       await axios.post(
-        "https://doctermy.onrender.com/api/v1/user/signup",
+        "https://doctermy.onrender.com/api/v1/auth/signup",
         submitData
       );
+
       console.log("Data:", formData);
       navigate("/signin");
     } catch (err) {
@@ -99,7 +100,7 @@ function SignUp() {
 
         <form onSubmit={handleSubmit}>
           <div className="container">
-            <div className="form-container">
+            <div className="form-containers">
               <img src={doclogo} className="logos" />
               <h4>Get started with Doctermy</h4>
               <p>Create your free account and get started</p>

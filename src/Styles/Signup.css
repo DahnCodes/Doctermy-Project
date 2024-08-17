@@ -15,27 +15,28 @@
    z-index: 14; 
 }
 
-.form-container {
-    padding: 60px 0px;
+.form-containers {
+    padding: 80px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* z-index: 4; */
     display: flex;
-    width: 155%;
+    width: 50vw;
     border-radius: 15px 0px 0px 15px;
     background-color: #f4f4f4;
     float: right;
-    min-height: 100vh;
+    min-height: 10vh;
+    margin-top: -30px;
 }
-.form-container h4 {
+.form-containers h4 {
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 500;
   text-align: center;
   margin-top: 15px;
 }
-.form-container p {
+.form-containers p {
   font-family: "Noto Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -90,7 +91,7 @@
 
 .doctermy {
   position: absolute;
-  top: 540px;
+  top: 240px;
   left: 60px;
 }
 .labels {

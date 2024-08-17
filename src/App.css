@@ -4,21 +4,20 @@
   box-sizing: border-box;
   font-family: "Noto Sans", sans-serif;
 }
-body{
+body {
   background-color: #f4f4f4;
- 
 }
-.call-linelist{
+.call-linelist {
   align-items: center;
   display: flex;
   justify-content: space-between;
   background-color: #6d6d6d;
 }
-.call-linelist li{
+.call-linelist li {
   margin-top: -40px;
   list-style: none;
 }
-.phone{
+.phone {
   margin-top: -40px;
 }
 .hero-section {
@@ -271,7 +270,7 @@ body{
   color: #6d6d6d;
 }
 
-.missions{
+.missions {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -279,73 +278,73 @@ body{
   margin-top: 30px;
 }
 
-.our-mission{
+.our-mission {
   text-align: center;
 }
-.our-mission h4{
+.our-mission h4 {
   font-size: 24px;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
-color: #0E0E0E;
+  color: #0e0e0e;
 }
-.our-mission p{
+.our-mission p {
   font-size: 16px;
   font-weight: 500;
-color: #6D6D6D;
-margin-top: 30px;
+  color: #6d6d6d;
+  margin-top: 30px;
 }
-.our-vision{
+.our-vision {
   text-align: center;
 }
-.our-vision h4{
+.our-vision h4 {
   font-size: 24px;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
-color: #0E0E0E;
+  color: #0e0e0e;
 }
-.our-vision p{
+.our-vision p {
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;
-color: #6D6D6D;
+  color: #6d6d6d;
 }
-.miss-vision{
+.miss-vision {
   width: 112px;
   height: 144px;
 }
-.reviews{
-  display:flex;
+.reviews {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0px 70px;
   padding: 40px;
 }
-.rev-img{
+.rev-img {
   width: 526px;
   /* height: 655.62px; */
   /* margin-top: 30px; */
 }
 
-.review-text h2{
+.review-text h2 {
   font-size: 40px;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
-  color: #00242B;
-  line-height: 48px
+  color: #00242b;
+  line-height: 48px;
 }
-.review-text p{
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
-margin-top: 40px;
-color: #6D6D6D;
+.review-text p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 40px;
+  color: #6d6d6d;
 }
 
-.read-more{
+.read-more {
   width: 129px;
   height: 48px;
   border-radius: 5px;
-  background-color: #00B4D8;
+  background-color: #00b4d8;
   color: #ffff;
   font-family: "Poppins", sans-serif;
   border: none;
@@ -353,6 +352,6 @@ color: #6D6D6D;
   font-size: 16px;
   margin-top: 40px;
 }
-.read-more:hover{
+.read-more:hover {
   background-color: #55cde5;
 }

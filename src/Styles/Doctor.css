@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.first-item{
+    grid-area: sidebar;
+    background-color: white;
+    min-height: 100vh;
+    padding: 20px;
+    width: 130px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+}
+.second-item{
+    grid-area: mainbar;
+}
+.grid-king{
+    display: grid;
+    grid-template-areas: 
+    "sidebar mainbar mainbar mainbar mainbar mainbar"
+    "sidebar mainbar mainbar mainbar mainbar mainbar"
+    "sidebar mainbar mainbar mainbar mainbar mainbar";
+}
+.item-menus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    color: #858585;
+  
+  }
+
+  .item-menus p {
+    font-size: 14px;
+  }
+  .item-menus div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-head {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    padding: 15px;
+    height: 65px;
+    align-items: center;
+    background-color: #ffffff;
+    width: 89vw;
+  }
+  .welcome-texts {
+    /* background-color: white; */
+    /* width: 470px; */
+    /* height: 100px; */
+    padding: 20px;
+    margin-top: 40px;
+    margin-left: -120px;
+
+  }
+  .welcome-texts h4 {
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .upcoming {
+    margin-top: 40px;
+    margin-left: -100px;
+  }
+  .upcoming h3 {
+    /* font-family: "Poppins", sans-serif; */
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .hrz {
+    max-width: 98%;
+    margin-top: 20px;
+  }
+  .patient-status{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn7{
+      width: 80px;
+height: 30px;
+background-color: #00B4D8;
+border: none;
+border-radius: 5px;
+color: #ffff;
+font-family: "Poppins", sans-serif;
+font-weight: 500;
+  }
+  .btn8{
+    width: 80px;
+    height: 30px;
+    background-color: #ffff;
+    border: 1px solid #00B4D8;
+    border-radius: 5px;
+    color: #00B4D8;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+  .vertical-line1 {
+    border-left: 1.5px solid #e2e2e2; 
+    height: 100px; 
+    margin: 0 -115px; 
+    position: relative; 
+  }
+  .vertical-line3 {
+    border-left: 1.5px solid #e2e2e2; 
+    height: 100px; 
+    margin: 0px; 
+    position: relative; 
+  }
+  .btn9{
+    width: 105px;
+height: 37px;
+background-color: #00B4D8;
+border: none;
+border-radius: 5px;
+color: #ffff;
+font-family: "Poppins", sans-serif;
+font-weight: 500;
+}
+.home.active{
+  color: #00B4D8;
+  font-weight: bold;
+}
+.calendar.active{
+  color:#00B4D8;
+  font-weight: bold;
+}

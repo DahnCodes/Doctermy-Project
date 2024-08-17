@@ -9,10 +9,18 @@ import doclogo from "../assets/Doctermy.png";
 import steth from "../assets/Stethoscope.png";
 import clock from "../assets/Clock.png";
 import doctermy from "../assets/Inverselogo.png";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import {
+  AiFillEye,
+  AiFillEyeInvisible,
+  AiOutlineLoading3Quarters,
+} from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlicer";
+// import {setToken} from "../redux/tokenSlicer";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -22,7 +30,9 @@ function SignIn() {
     password: "",
   });
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,12 +40,36 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      await axios.post(
-        "https://doctermy.onrender.com/api/v1/user/login",
+      const res = await axios.post(
+        "https://doctermy.onrender.com/api/v1/auth/login",
         formData
       );
-      navigate("/home");
+
+      localStorage.setItem("myToken", JSON.stringify(res.data.myToken));
+      localStorage.setItem("user", JSON.stringify(res.data.data));
+
+      console.log(res.data.myToken);
+
+      console.log("data: ", res.data);
+
+      console.log(res.data.data.name);
+
+      // dispatch(setToken(res.data.myToken));
+
+      dispatch(setUser(res.data.data));
+
+      if (res.data.data.role === "Doctor") {
+        navigate("/doctordashboard");
+      } else if (res.data.data.role === "Patient") {
+        navigate("/home");
+      } else {
+        // Handle unexpected roles
+        console.error("Unknown role");
+        setError("Unknown role");
+      }
+      // navigate("/home");
     } catch (err) {
       if (err.response && err.response.data) {
         if (err.response.data.message === "Incorrect email") {
@@ -48,12 +82,19 @@ function SignIn() {
       } else {
         setError("Failed to sign in");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
       <div className="signUpBackground">
+        {loading && (
+          <div className="loading">
+            <AiOutlineLoading3Quarters className="loading-icon" />
+          </div>
+        )}
         <div className="contain-items">
           <img src={doctermy} className="doctermy" />
           <img src={steth} className="steth" />
