@@ -7,7 +7,8 @@
 .dash-navigation {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 30px 40px;
+  height: 65px;
   align-items: center;
   background-color: #00b4d8;
   color: white;
@@ -23,7 +24,7 @@
   justify-content: center;
   list-style: none;
   gap: 20px;
-  font-size: 28px;
+  font-size: 25px;
 }
 .pfps {
   margin-bottom: -3px;
@@ -90,8 +91,6 @@
   position: relative;
   top: 5px;
   left: 50px;
- 
-
 }
 
 .grid-container {
@@ -144,8 +143,7 @@
   text-align: center;
   position: relative;
   left: 40px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .btn4 {
   margin-top: 10px;
@@ -157,6 +155,10 @@
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
+  cursor: pointer;
+}
+.btn4:hover{
+  background-color: #55cde5;
 }
 .main-text {
   margin-top: 40px;
@@ -195,13 +197,14 @@
   border-radius: 10px;
   border: 1.5px solid #b1b1b1;
   margin-top: 10px;
-  /* padding-inline: 0px 0px; */
+  padding-inline: 10px;
 }
 .select-forms3 {
   width: 170px;
   height: 40px;
   border-radius: 10px;
   border: 1.5px solid #b1b1b1;
+  padding-inline: 10px;
 }
 .select-forms2 {
   width: 480px;
@@ -226,6 +229,7 @@
   background-color: #00b4d8;
   border: none;
   margin-top: 30px;
+  margin-bottom: 20px;
   color: white;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -242,8 +246,7 @@
   height: 100px;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .cards-location {
   display: flex;
@@ -295,10 +298,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 15%;
-  /* position: fixed; */
+  position: relative;
+  right: 420% ;
 }
 .pend-container p {
   color: #858585;
+  margin-top: 20px;
+  width: 150%;
+  text-align: center;
 }
 .pending-appointments-grid {
   display: grid;
@@ -316,14 +323,14 @@
   padding: 20px;
   margin-bottom: 10px; /* Space between each appointment */
   border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffff;
 }
 .vertical-line {
-  border-left: 1.5px solid #e2e2e2; 
-  height: 100px; 
-  margin: 0 -215px; 
-  position: relative; 
+  border-left: 1.5px solid #e2e2e2;
+  height: 100px;
+  margin: 0 -215px;
+  position: relative;
 }
 
 .patient-type p {
@@ -343,16 +350,8 @@
   text-align: center;
   border-radius: 8px;
 }
-.stats {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .stats.active {
-    border-bottom: 2px solid #00B4D8; /* Change the color to your desired highlight color */
-    font-weight: bold;
-  }
-.patient-type1{
+
+.patient-type1 {
   margin-right: 320px;
 }
 .patient-type1 p {
@@ -365,17 +364,46 @@
   /* font-size: 30px; */
 }
 
-.close{
+.close {
   color: red;
   font-size: 24px;
 }
-.home.active{
-  color: #00B4D8;
+.home.active {
+  color: #00b4d8;
   font-weight: bold;
   cursor: pointer;
 }
-.calendar.active{
-  color:#00B4D8;
+.calendar.active {
+  color: #00b4d8;
   font-weight: bold;
   cursor: pointer;
+}
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3; /* Light grey */
+  border-top: 2px solid #3498db; /* Blue */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px; /* Add some space between the spinner and text */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn5:disabled {
+  background-color: #d3d3d3; /* A lighter color to indicate it's disabled */
+  cursor: not-allowed;
 }

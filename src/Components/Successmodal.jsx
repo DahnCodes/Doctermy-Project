@@ -17,7 +17,7 @@ const SuccessModal = ({ successMessage, onClose }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content1" onClick={(e) => e.stopPropagation()}>
             <FaCircleCheck className="good"/>
         <div className="success-text">
           <p>{successMessage}</p>

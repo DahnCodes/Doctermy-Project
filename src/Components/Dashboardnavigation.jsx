@@ -6,6 +6,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const Dashboardnavigation = () => {
   const [user, setUser] = useState(null);
@@ -21,7 +22,7 @@ const Dashboardnavigation = () => {
     }else {
       navigate("/signin")
     }
-  }, []);
+  }, [navigate]);
   
   return (
     <>
@@ -39,6 +40,7 @@ const Dashboardnavigation = () => {
           <div className="profile">
             <FaCircleUser className="pfp"/>
             <p>{user ? user.name : ""}</p>
+            <Dropdown/>
           </div>
           </ul>
         </nav>

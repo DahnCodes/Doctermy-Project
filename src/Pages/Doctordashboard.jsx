@@ -11,6 +11,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Declinemodal from "../Components/Declinemodal";
 import { IoIosCloseCircle } from "react-icons/io";
+import Requestmodal from "../Components/Requestmodal";
 
 const Doctordashboard = () => {
   const [color, setColor] = useState("");
@@ -20,13 +21,22 @@ const Doctordashboard = () => {
   const [requestAppointments, setRequestAppointments] = useState([]);
   const [approvedAppointments, setApprovedAppointments] = useState([]);
   const [declinedAppointments, setDeclinedAppointments] = useState([]);
-  const [completedAppointments, setCompletedAppointments] = useState([]);
+  const [completedAppointments, setCompletedAppointments] = useState({});
   const [actionResult, setActionResult] = useState(null);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+  const [requestMessage, setRequestMessage] = useState("");
+  const [showRequestModal, setShowRequestModal] = useState(false);
+
   const navigate = useNavigate();
+
+  const handleClosedModal = (_id) => {
+    setSelectedAppointmentId(_id);
+    setShowRequestModal(false);
+    setRequestMessage("Request Accepeted!"); // Clear the message if needed
+  };
 
   useEffect(() => {
     const myToken = localStorage.getItem("myToken");
@@ -100,6 +110,7 @@ const Doctordashboard = () => {
     }
   };
   const handleAccept = async (_id) => {
+    setShowRequestModal(false);
     try {
       const result = await axios.patch(
         `https://doctermy.onrender.com/api/v1/appointment/update-status?_id=${_id}`,
@@ -112,11 +123,14 @@ const Doctordashboard = () => {
         // {appointmentId},
         //  {appointmentType},
       );
-      setRequestAppointments(result.data.data);
+      statusFetch();
+      // setRequestAppointments(result.data.data);
       setActionResult(`Accepted appointment with ID: ${_id}`);
       console.log(result.data.data);
     } catch (error) {
       console.error("error fetching status", error);
+    }finally{
+      setShowRequestModal(true)
     }
   };
 
@@ -199,21 +213,24 @@ const Doctordashboard = () => {
 
   const handleCompleted = async (_id) => {
     try {
+      // const idString = Array.isArray(_id) ? _id[0] : _id;
       const result = await axios.patch(
         `https://doctermy.onrender.com/api/v1/appointment/update-status?_id=${_id}`,
-        { status: "Completed" },
+        {status: "Completed"},
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
+        
         // {appointmentId},
         //  {appointmentType},
       );
+      // console.log(result._id);
       // statusApproved();
-      // setRequestAppointments(result.data.data);
+      // setCompletedAppointments(result.data.data);
       setActionResult(`Completed appointment with ID: ${_id}`);
-      console.log(result.data.data);
+      console.log(result.data.data._id);
     } catch (error) {
       console.error("error fetching status", error);
     }
@@ -284,6 +301,10 @@ const Doctordashboard = () => {
                   <div className="pending-appointments-grid">
                   {approvedAppointments &&
                     approvedAppointments.map((approve) => {
+                      const startTime = new Date(appointment.startTime);
+                      const adjustedTime = new Date(
+                        startTime.getTime() - 1 * 60 * 60 * 1000
+                      );
                       return (
                         <div key={approve._id} className="pending-state">
                           <div className="pend-date">
@@ -300,7 +321,7 @@ const Doctordashboard = () => {
                               )}
                             </h3>
                             <p>
-                              {new Date(approve.startTime).toLocaleTimeString(
+                              {adjustedTime.toLocaleTimeString(
                                 "en-US",
                                 {
                                   hour: "numeric",
@@ -434,6 +455,10 @@ const Doctordashboard = () => {
                   <div className="pending-appointments-grid">
                     {requestAppointments &&
                       requestAppointments.map((appointment) => {
+                        const startTime = new Date(appointment.startTime);
+                        const adjustedTime = new Date(
+                          startTime.getTime() - 1 * 60 * 60 * 1000
+                        );
                         return (
                           <div key={appointment._id} className="pending-state">
                             <div className="pend-date">
@@ -453,12 +478,10 @@ const Doctordashboard = () => {
                                 })}
                               </h3>
                               <p>
-                                {new Date(
-                                  appointment.startTime
-                                ).toLocaleTimeString("en-US", {
+                                {adjustedTime.toLocaleTimeString("en-US", {
                                   hour: "numeric",
                                   minute: "numeric",
-                                  second: "numeric",
+                            
                                   hour12: true,
                                 })}
                               </p>
@@ -487,7 +510,15 @@ const Doctordashboard = () => {
                           </div>
                         );
                       })}
-
+<div>
+{showRequestModal && (
+                    <Requestmodal
+                    _id={selectedAppointmentId}
+                      requestMessage={requestMessage}
+                      onClose={handleClosedModal}
+                    />
+                  )}
+</div>
                     {isModalOpen && (
                       <Declinemodal
                         _id={selectedAppointmentId}
@@ -557,6 +588,10 @@ const Doctordashboard = () => {
                   <div className="pending-appointments-grid">
                     {approvedAppointments &&
                       approvedAppointments.map((approve) => {
+                        const startTime = new Date(appointment.startTime);
+                        const adjustedTime = new Date(
+                          startTime.getTime() - 1 * 60 * 60 * 1000
+                        );
                         return (
                           <div key={approve._id} className="pending-state">
                             <div className="pend-date">
@@ -573,12 +608,11 @@ const Doctordashboard = () => {
                                 )}
                               </h3>
                               <p>
-                                {new Date(approve.startTime).toLocaleTimeString(
+                                {adjustedTime.toLocaleTimeString(
                                   "en-US",
                                   {
                                     hour: "numeric",
                                     minute: "numeric",
-                                    second: "numeric",
                                     hour12: true,
                                   }
                                 )}
@@ -590,7 +624,7 @@ const Doctordashboard = () => {
                               <p>{approve.type}</p>
                             </div>
                             <div className="patient-name2">
-                              <button className="btn9" onClick={handleCompleted}>Complete</button>
+                              <button className="btn9"  onClick={() => handleCompleted(approve._id)}>Complete</button>
                             </div>
                           </div>
                         );
@@ -658,6 +692,7 @@ const Doctordashboard = () => {
                   <div className="pending-appointments-grid">
                   {declinedAppointments &&
                   declinedAppointments.map((decline) => {
+                    
                     return(
                     <div key={decline._id} className="pending-state">
                       <div className="pend-date">

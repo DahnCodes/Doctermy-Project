@@ -12,6 +12,12 @@
     width: 130px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
 }
+.home{
+  font-size: 25px;
+}
+.calendar{
+  font-size: 25px;
+}
 .second-item{
     grid-area: mainbar;
 }
