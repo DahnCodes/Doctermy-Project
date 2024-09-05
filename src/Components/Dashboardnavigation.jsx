@@ -7,18 +7,20 @@ import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
+import { useSelector } from "react-redux";
+
 
 const Dashboardnavigation = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
-
+  const userx = useSelector((state) => state.user);
   // const userName = useSelector((store) => store.user.name);
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
+    // const userData = localStorage.getItem("user");
 
-    if (userData) {
-      setUser(JSON.parse(userData));
+    if (userx) {
+      setUser(userx.user);
     }else {
       navigate("/signin")
     }
@@ -39,7 +41,7 @@ const Dashboardnavigation = () => {
             </li>
           <div className="profile">
             <FaCircleUser className="pfp"/>
-            <p>{user ? user.name : ""}</p>
+            <p>{userx ? userx.user.name : ""}</p>
             <Dropdown/>
           </div>
           </ul>

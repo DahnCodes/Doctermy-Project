@@ -191,7 +191,7 @@ function SignUp() {
                       onClick={toggleConfirmPasswordVisibility}
                     />
                   )}
-                  <p className="password-conditions">
+                  <p className="password-p">
                     Password must contain a symbol, number, capital & <br />
                     lowercase letters and a minimum of 8 characters
                   </p>

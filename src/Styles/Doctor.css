@@ -7,7 +7,7 @@
 .first-item{
     grid-area: sidebar;
     background-color: white;
-    min-height: 100vh;
+    min-height: 300vh;
     padding: 20px;
     width: 130px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
@@ -20,6 +20,7 @@
 }
 .second-item{
     grid-area: mainbar;
+    margin-right: 83px;
 }
 .grid-king{
     display: grid;
@@ -99,16 +100,26 @@ border-radius: 5px;
 color: #ffff;
 font-family: "Poppins", sans-serif;
 font-weight: 500;
+cursor: pointer;
+  }
+  .btn7:hover{
+    background-color: #55CDE5
+    ;
+  }
+  .btn8:hover{
+   border: 2px solid #55CDE5
+    ;
   }
   .btn8{
     width: 80px;
     height: 30px;
     background-color: #ffff;
-    border: 1px solid #00B4D8;
+    border: 2px solid #00B4D8;
     border-radius: 5px;
     color: #00B4D8;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+    cursor: pointer;
   }
   .vertical-line1 {
     border-left: 1.5px solid #e2e2e2; 
@@ -131,6 +142,11 @@ border-radius: 5px;
 color: #ffff;
 font-family: "Poppins", sans-serif;
 font-weight: 500;
+cursor: pointer;
+}
+.btn9:hover{
+  background-color: #55CDE5
+  ;
 }
 .home.active{
   color: #00B4D8;
@@ -139,4 +155,17 @@ font-weight: 500;
 .calendar.active{
   color:#00B4D8;
   font-weight: bold;
+}
+.view-all-btn2{
+  float: right;
+  position: relative;
+  left: -70px;
+  top: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  float: right;
+  font-weight: 500;
+  color: #00b4d8;
+  font-size: 18px;
 }

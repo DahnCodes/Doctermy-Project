@@ -1,55 +1,55 @@
-import { useEffect, useState } from "react"
-import emptybox from "../assets/emptybox.png"
-import Sidebar from "../Components/Sidebar";
-import Headers from "../Components/Headers";
+import { useEffect, useState } from "react";
 import Dashboardnavigation from "../Components/Dashboardnavigation";
-import "../Styles/Home.css"
-import axios from "axios";
+import Doctorheader from "../Components/Doctorheader";
+import Doctorsidebar from "../Components/Doctorsidebar";
+import { IoIosCloseCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { FaCircleCheck } from "react-icons/fa6";
+import axios from "axios";
 import Loaders from "../Components/Loader";
+import { useSelector } from "react-redux";
 
 
-const Completed = () => {
-    const [completedAppointments, setCompletedAppointments] = useState([]);
-    const [user, setUser] = useState(null);
+const Doctordeclined = () => {
+
+    const [declinedAppointments, setDeclinedAppointments] = useState([])
+    // const [user, setUser] = useState(null);
+    // const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const [token, setToken] = useState(null);
+
     const navigate = useNavigate();
   
+    const userx = useSelector((state) => state.user);
+
+    const token = useSelector((state) => state.user.token);
     useEffect(() => {
-      const myToken = localStorage.getItem("myToken");
   
-      if (myToken) {
-        setToken(JSON.parse(myToken));
-      } else {
+      if (!token) {
+      
         navigate("/signin");
       }
     }, [navigate]);
   
     useEffect(() => {
-      const userData = localStorage.getItem("user");
   
-      if (userData) {
-        setUser(JSON.parse(userData));
-      } else {
+      if (!userx) {
+
         navigate("/signin");
       }
     }, [navigate]);
   
     useEffect(() => {
       if (token) {
-        statusCompleted();
+        statusDeclined();
       }
     }, [token]);
   
-    const statusCompleted = async () => {
+    const statusDeclined = async () => {
       setLoading(true);
 
       try {
         const result = await axios.get(
-          "https://doctermy.onrender.com/api/v1/appointment?status=Completed",
+          "https://doctermy.onrender.com/api/v1/appointment?status=Declined",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -59,11 +59,10 @@ const Completed = () => {
         const appointments = result.data.data.map((appointment) => {
           return {
             ...appointment,
-           doctorName: appointment.doctorId?.name || "Unknown", // Assuming patientId object contains the name
+            patientName: appointment.patientId?.name || "Unknown", // Assuming patientId object contains the name
           };
         });
-  
-        setCompletedAppointments(appointments);
+        setDeclinedAppointments(appointments);
         setLoading(false);
 
         console.log(result.data.data);
@@ -74,28 +73,31 @@ const Completed = () => {
       }
     };
   return (
+    <div>
+ <>
+      <Dashboardnavigation />
 
-    <>
-    <Dashboardnavigation/>
-    <div className="grid-container">
-        <Sidebar/>
+      <div className="grid-container">
+        <Doctorsidebar />
         <div className="penders-container">
-        <Headers/>
-        {loading ? (
+          <Doctorheader />
+          {loading ? (
             <div className="spinner-container">
               <Loaders /> {/* Display spinner while loading */}
             </div>
-        ): completedAppointments.length == 0 ? (
-                    <div className="pend-container">
-                      <div className="pends">
-                        <img src={emptybox} className="box" />
-                      </div>
-                      <p>No completed appointments</p>
-                    </div>
-                ) : (
-                  <div className="pending-appointments-grid">
-              {completedAppointments &&
-                completedAppointments
+          ): declinedAppointments.length === 0 ? (
+            <>
+              <div className="pend-container">
+                <div className="pends">
+                  {/* <img src={emptybox} className="box" /> */}
+                </div>
+                <p>No declined appointments</p>
+              </div>
+            </>
+          ) : (
+            <div className="pending-appointments-grid">
+              {declinedAppointments &&
+                declinedAppointments
                 .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
                 .map((decline) => {
                   const startTime = new Date(decline.startTime);
@@ -104,7 +106,6 @@ const Completed = () => {
                   );
                   const appointmentDate = new Date(decline.startTime);
                   const appointmentDay = new Date(decline.startTime);
-
                   return (
                     <div key={decline._id} className="pending-state">
                       <div className="pend-date">
@@ -132,25 +133,25 @@ const Completed = () => {
                           )}
                         </p>
                       </div>
-                      <span className="vertical-linez"></span>
+                      <span className="vertical-line3"></span>
                       <div className="patient-type">
-                        <h2>{decline.doctorName}</h2>
+                        <h2>{decline.patientName}</h2>
                         <p>{decline.type}</p>
                         <p>{decline.remark}</p>
                       </div>
                       <div className="patient-name2">
-                      <FaCircleCheck className="closer"/>
+                        <IoIosCloseCircle className="close" />
                       </div>
                     </div>
                   );
                 })}
             </div>
-                )}
-                </div>
-            
-    </div>
+          )}
+        </div>
+      </div>
     </>
+    </div>
   )
 }
 
-export default Completed
+export default Doctordeclined

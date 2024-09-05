@@ -10,6 +10,12 @@ import Pending from "./Pages/Pending";
 import { Approved } from "./Pages/Approved";
 import Declined from "./Pages/Declined";
 import Completed from "./Pages/Completed";
+import Doctorrequest from "./Pages/Doctorrequest";
+import Doctorapprove from "./Pages/Doctorapprove";
+import Doctordeclined from "./Pages/Doctordeclined";
+import Doctorcompleted from "./Pages/Doctorcompleted";
+import Doctorappointment from "./Pages/Doctorappointment";
+import Admindashboard from "./Pages/Admindashboard";
 
 function App() {
   return (
@@ -26,6 +32,12 @@ function App() {
           <Route path="/approved" element={<Approved />} />
           <Route path="/declined" element={<Declined />} />
           <Route path="/completed" element={<Completed />} />
+          <Route path="/requests" element={<Doctorrequest />} />
+          <Route path="/doctorapproved" element={<Doctorapprove />} />
+          <Route path="/doctordeclined" element={<Doctordeclined />} />
+          <Route path="/doctorcompleted" element={<Doctorcompleted />} />
+          <Route path="/appointment" element={<Doctorappointment />} />
+          <Route path="/admin" element={<Admindashboard />} />
         </Routes>
       </BrowserRouter>
     </>

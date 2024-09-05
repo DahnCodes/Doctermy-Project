@@ -30,6 +30,7 @@ export const userSlice = createSlice({
       state.imageUrl = action.payload?.imageUrl;
       state.createdAt = action.payload?.createdAt;
       state.updatedAt = action.payload?.updatedAt;
+      state.isLoggedIn = true;
     },
     // setToken(state, action) {
     //   state.token = action.payload?.token;

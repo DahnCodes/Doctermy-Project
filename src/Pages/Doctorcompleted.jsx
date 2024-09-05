@@ -1,113 +1,112 @@
 import { useEffect, useState } from "react";
 import emptybox from "../assets/emptybox.png";
-import Sidebar from "../Components/Sidebar";
-import Headers from "../Components/Headers";
 import Dashboardnavigation from "../Components/Dashboardnavigation";
-import "../Styles/Home.css";
+import Doctorsidebar from "../Components/Doctorsidebar";
+import Doctorheader from "../Components/Doctorheader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "rsuite";
+import { FaCircleCheck } from "react-icons/fa6";
 import Loaders from "../Components/Loader";
 import { useSelector } from "react-redux";
 
-export const Approved = () => {
-  const [approvedAppointments, setApprovedAppointments] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Doctorcompleted = () => {
+  const [completedAppointments, setCompletedAppointments] = useState([]);
   // const [user, setUser] = useState(null);
   // const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const userx = useSelector((state) => state.user);
 
-  
   const token = useSelector((state) => state.user.token);
-
   useEffect(() => {
-  
+
     if (!token) {
-     
+
+      
       navigate("/signin");
     }
-  
   }, [navigate]);
 
   useEffect(() => {
 
     if (!userx) {
- 
+  
       navigate("/signin");
     }
   }, [navigate]);
 
   useEffect(() => {
     if (token) {
-      statusApprove();
+      statusCompleted();
     }
-  }, [token]);
+  });
 
-  const statusApprove = async () => {
-    setLoading(true);
+  const statusCompleted = async () => {
+    // setLoading(true) 
     try {
       const result = await axios.get(
-        "https://doctermy.onrender.com/api/v1/appointment?status=Approved",
+        "https://doctermy.onrender.com/api/v1/appointment?status=Completed",
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
       const appointments = result.data.data.map((appointment) => {
         return {
           ...appointment,
-         doctorName: appointment.doctorId?.name || "Unknown", // Assuming patientId object contains the name
+          patientName: appointment.patientId?.name || "Unknown", // Assuming patientId object contains the name
         };
       });
-
-      setApprovedAppointments(appointments);
-      setLoading(false);
+      setCompletedAppointments(appointments);
+setLoading(false)
       console.log(result.data.data);
     } catch (error) {
       console.error("error fetching status", error);
-      setLoading(false);
+      setLoading(false)
     }
   };
+  
   return (
-    <>
-      <Dashboardnavigation />
+    
+      <>
+        <Dashboardnavigation />
 
-      <div className="grid-container">
-        <Sidebar />
-        <div className="penders-container">
-          <Headers />
-          {loading ? (
+        <div className="grid-king">
+          <Doctorsidebar />
+          <div className="requested-container">
+            <Doctorheader />
+            {loading ? (
             <div className="spinner-container">
               <Loaders /> {/* Display spinner while loading */}
             </div>
-         
-        ):  approvedAppointments.length <= 0 ? (
-            <>
-              <div className="pend-container">
-                <div className="pends">
-                  <img src={emptybox} className="box" />
+          ):
+            completedAppointments.length === 0 ? (
+              <>
+                <div className="pend-container">
+                  <div className="pends">
+                    <img src={emptybox} className="box" />
+                  </div>
+                  <p>No completed appointments</p>
                 </div>
-                <p>No approved appointments</p>
-              </div>
-            </>
-          ) : (
-            <div className="pending-appointments-grid">
-              {approvedAppointments &&
-                approvedAppointments
+              </>
+            ) : (
+              <div className="pending-appointments-grid">
+              {completedAppointments &&
+                completedAppointments
                 .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-                .map((approve) => {
-                  const startTime = new Date(approve.startTime);
+                .map((decline) => {
+                  const startTime = new Date(decline.startTime);
                   const adjustedTime = new Date(
                     startTime.getTime() - 1 * 60 * 60 * 1000
                   );
-                  const appointmentDate = new Date(approve.startTime);
-                  const appointmentDay = new Date(approve.startTime);
-
+                  const appointmentDate = new Date(decline.startTime);
+                  const appointmentDay = new Date(decline.startTime);
                   return (
-                    <div key={approve._id} className="pending-state">
+                    <div key={decline._id} className="pending-state">
                       <div className="pend-date">
                         <p>
                           {appointmentDay.toLocaleDateString(
@@ -133,21 +132,24 @@ export const Approved = () => {
                           )}
                         </p>
                       </div>
-                      <span className="vertical-line"></span>
-                      <div className="patient-type2">
-                        <h2>{approve.doctorName}</h2>
-                        <p>{approve.type}</p>
+                      <span className="vertical-linez"></span>
+                      <div className="patient-type">
+                        <h2>{decline.patientName}</h2>
+                        <p>{decline.type}</p>
+                        <p>{decline.remark}</p>
                       </div>
-                      {/* <div className="patient-name">
-                                <p>Approved</p>
-                              </div> */}
+                      <div className="patient-name2">
+                      <FaCircleCheck className="closer"/>
+                      </div>
                     </div>
                   );
                 })}
             </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    </>
+      </>
   );
 };
+
+export default Doctorcompleted;

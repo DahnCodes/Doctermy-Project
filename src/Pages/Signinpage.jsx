@@ -15,7 +15,8 @@ import {
   AiOutlineLoading3Quarters,
 } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { setUser } from "../redux/userSlicer";
+import { setToken, setUser } from "../store/slice/authSlice";
+// import { setUser } from "../redux/userSlicer";
 // import {setToken} from "../redux/tokenSlicer";
 
 function SignIn() {
@@ -47,8 +48,8 @@ function SignIn() {
         formData
       );
 
-      localStorage.setItem("myToken", JSON.stringify(res.data.myToken));
-      localStorage.setItem("user", JSON.stringify(res.data.data));
+      // localStorage.setItem("myToken", JSON.stringify(res.data.myToken));
+      // localStorage.setItem("user", JSON.stringify(res.data.data));
 
       console.log(res.data.myToken);
 
@@ -59,6 +60,7 @@ function SignIn() {
       // dispatch(setToken(res.data.myToken));
 
       dispatch(setUser(res.data.data));
+      dispatch(setToken(res.data.myToken));
 
       if (res.data.data.role === "Doctor") {
         navigate("/doctordashboard");

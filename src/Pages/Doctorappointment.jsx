@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Dashboardnavigation from "../Components/Dashboardnavigation";
-import Headers from "../Components/Headers";
-import Sidebar from "../Components/Sidebar";
+import Doctorheader from "../Components/Doctorheader";
+import Doctorsidebar from "../Components/Doctorsidebar";
 import Successmodal from "../Components/Successmodal";
 import DatePicker from "react-datepicker";
-import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Styles/Home.css";
 import { useSelector } from "react-redux";
 
-const Bookappointment = () => {
-  const [doctor, setDoctor] = useState([]);
+const Doctorappointment = () => {
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState("");
@@ -20,43 +20,51 @@ const Bookappointment = () => {
   const [showModal, setShowModal] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [appLoading, setAppLoading] = useState(false);
-  // const [token, setToken] = useState(null);
+//   const [token, setToken] = useState(null);
   const navigate = useNavigate();
-
   const userx = useSelector((state) => state.user);
 
   const token = useSelector((state) => state.user.token);
-
   useEffect(() => {
+
+
     if (!token || !userx) {
       navigate("/signin");
-    }
-  }, [token, userx]);
+    } 
+  }, [navigate]);
 
   useEffect(() => {
-    const fetchDoctors = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://doctermy.onrender.com/api/v1/users?role=Doctor",
-          {
-            headers: { Authorization: `Bearer ${token}` },
+        const patientResponse = await axios.get(
+          "https://doctermy.onrender.com/api/v1/users?role=Patient", {
+            headers: { Authorization: `Bearer ${token}` }
           }
         );
-        setDoctor(response.data.data);
+        setPatients(patientResponse.data.data);
+
+        const doctorResponse = await axios.get(
+          "https://doctermy.onrender.com/api/v1/users?role=Doctor", {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        );
+        setDoctors(doctorResponse.data.data);
       } catch (error) {
-        console.error("Error fetching doctors:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchDoctors();
-  }, []);
+    if (token) {
+      fetchData();
+    }
+  }, [token]);
 
   const handleAppointmentChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
     if (name === "doctorId") {
-      const selectedDoctor = doctor.find((doc) => doc._id === value);
+      const selectedDoctor = doctors.find((doc) => doc._id === value);
       if (selectedDoctor) {
         setAvailableTimes(selectedDoctor.availableTime || []);
       } else {
@@ -87,7 +95,8 @@ const Bookappointment = () => {
         "https://doctermy.onrender.com/api/v1/appointment",
         {
           doctorId: formData.doctorId,
-          date: moment(selectedDate).format("YYYY-MM-DD"),
+          patientId: formData.patientId,
+          date: selectedDate.toISOString(),
           timeValue: selectedTime,
           ...formData,
         },
@@ -97,7 +106,6 @@ const Bookappointment = () => {
       );
 
       setSuccessMessage("Appointment request submitted successfully!");
-
       setFormData({});
       setSelectedDate(null);
       setSelectedTime("");
@@ -115,9 +123,9 @@ const Bookappointment = () => {
     <>
       <Dashboardnavigation />
       <div className="grid-container">
-        <Sidebar />
+        <Doctorsidebar />
         <div className="appointments-container">
-          <Headers />
+          <Doctorheader />
           <div className="app-container">
             <h3>Book Appointment</h3>
             <div className="app-detail">
@@ -137,6 +145,23 @@ const Bookappointment = () => {
               </div>
 
               <div className="forms-field">
+                <label>Patient:</label>
+                <select
+                  name="patientId"
+                  className="select-forms"
+                  onChange={handleAppointmentChange}
+                  required
+                >
+                  <option value="">Select a patient</option>
+                  {patients.map((patient) => (
+                    <option key={patient._id} value={patient._id}>
+                      {patient.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* <div className="forms-field">
                 <label>Doctor:</label>
                 <select
                   name="doctorId"
@@ -145,13 +170,13 @@ const Bookappointment = () => {
                   required
                 >
                   <option value="">Select a doctor</option>
-                  {doctor.map((doc) => (
-                    <option key={doc._id} value={doc._id}>
-                      {doc.name}
+                  {doctors.map((doctor) => (
+                    <option key={doctor._id} value={doctor._id}>
+                      {doctor.name}
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               <div className="forms-field">
                 <label>Select Date:</label>
@@ -184,12 +209,12 @@ const Bookappointment = () => {
               )}
 
               <div className="forms-field">
-                <label>Complaint:</label>
+                <label>Description:</label>
                 <input
                   type="text"
                   name="complaint"
                   className="select-forms2"
-                  placeholder="Complaint"
+                  placeholder="Description"
                   onChange={handleAppointmentChange}
                   required
                 />
@@ -223,4 +248,4 @@ const Bookappointment = () => {
   );
 };
 
-export default Bookappointment;
+export default Doctorappointment;

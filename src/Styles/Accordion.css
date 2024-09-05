@@ -1,0 +1,48 @@
+.accordion-item {
+  border: 0.5px solid #858585;
+  margin-bottom: 10px;
+  width: 980px;
+  height: 84px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.accordion-header {
+    border-radius: 10px;
+  background-color: #fff;
+  /* width: 980px; */
+  height: 82px;
+  padding: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header h3{
+    font-family: "Poppins", sans-serif;
+font-weight: 500;
+}
+
+.accordion-content {
+  padding: 15px;
+  background-color: #fff;
+}
+.clo{
+    width: 24px;
+    height: 24px;
+    transition: 0.2s ease-out;
+}
+
+@media only screen and (max-width: 768px){
+    .accordion-item{
+        width: 360px;
+        position: relative;
+        right: 10px;
+      }
+      .accordion-header h3{
+        font-family: "Poppins", sans-serif;
+       
+    font-weight: 500;
+    }  
+}

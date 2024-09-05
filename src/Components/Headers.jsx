@@ -5,11 +5,20 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Tab = styled.p`
-  padding: 10px;
+padding: 10px;
   cursor: pointer;
- transition: all 0.1s ease;
-   font-weight: ${(props) => (props.active ? "bold" : "normal")};
-  border-bottom: ${(props) => (props.active ? "3px solid #00b4d8" : "3px solid transparent ")};
+  text-align: center;
+  transition: all 0.2s ease;
+  font-weight: ${(props) => (props.active ? "bold" : "normal")};
+  border-bottom: ${(props) =>
+    props.active ? "3px solid #00b4d8" : "3px solid transparent"};
+  margin: 0;
+color: #00000;
+ height: 55px;
+ width: 261.6px
+  box-sizing: border-box;
+  transform: ${(props) => (props.active ? "translateY(5px)" : "translateY(0)")};
+  
 `;
 
 const Headers = () => {
@@ -47,7 +56,7 @@ const Headers = () => {
   return (
     <div>
       <div className="app-header">
-      <Tab
+        <Tab
           active={activeTab === "bookAppointment"}
           onClick={() => handleTabClick("bookAppointment", "/bookappointment")}
         >

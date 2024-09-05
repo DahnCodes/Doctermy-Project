@@ -1,0 +1,16 @@
+.calls-container{
+    background-color: #005A6C;
+    padding: 20px;
+    margin-top:    -50px;
+}
+@media only screen and (max-width: 768px){
+    .calls-container{
+        width: 488px;
+    }
+}
+@media only screen and (max-width: 425px){
+    .calls-container{
+        width: 460px;
+        height: 60px;
+    }
+}

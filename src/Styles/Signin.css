@@ -33,13 +33,14 @@
 .error-container {
   display: flex;
   align-items: center;
-  margin-top: 10px;
   background-color: #ffe6e6;
   padding: 10px;
   border: 1px solid red;
   border-radius: 5px;
   font-size: 12px;
   width: 250px;
+  position: absolute;
+  bottom: 400px;
 }
 .inputs {
   width: 440px;
@@ -68,7 +69,7 @@
 
 .clock {
   position: absolute;
-  top: 536px;
+  top: 532px;
   left: -45px;
 }
 

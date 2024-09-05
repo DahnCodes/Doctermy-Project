@@ -6,42 +6,47 @@ import Headers from "../Components/Headers";
 import "../Styles/Home.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loaders from "../Components/Loader";
+import moment from "moment"; // Import moment.js
+import { useSelector } from "react-redux";
 
 const Pending = () => {
   const [pendingAppointments, setPendingAppointments] = useState([]);
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-const navigate = useNavigate();
-  
-useEffect(() => {
-    const myToken = localStorage.getItem("myToken");
+  const [loading, setLoading] = useState(true);
 
-    if (myToken) {
-      setToken(JSON.parse(myToken));
-    } else {
+  // const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+  const userx = useSelector((state) => state.user);
+
+  
+  const token = useSelector((state) => state.user.token);
+
+
+  useEffect(() => {
+
+    if (!token) {
+
       navigate("/signin");
     }
   }, [navigate]);
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
 
-    if (userData) {
-      setUser(JSON.parse(userData));
-    } else {
+    if (!userx) {
+  
       navigate("/signin");
     }
   }, [navigate]);
-
 
   useEffect(() => {
     if (token) {
       statusPending();
     }
-   
   }, [token]);
 
   const statusPending = async () => {
+    setLoading(true);
     try {
       const result = await axios.get(
         "https://doctermy.onrender.com/api/v1/appointment?status=Pending",
@@ -51,11 +56,19 @@ useEffect(() => {
           },
         }
       );
-      setPendingAppointments(result.data.data);
+      const appointments = result.data.data.map((appointment) => {
+        console.log(appointment);
+        return {
+          ...appointment,
+          doctorName: appointment.doctorId?.name || "Unknown", // Assuming patientId object contains the name
+        };
+      });
 
-      console.log(result.data.data);
+      setPendingAppointments(appointments);
+      setLoading(false);
     } catch (error) {
       console.error("error fetching status", error);
+      setLoading(false);
     }
   };
 
@@ -64,71 +77,58 @@ useEffect(() => {
       <Dashboardnavigation />
       <div className="grid-container">
         <Sidebar />
-<div className="penders-container">
-        <Headers />
-
-        {pendingAppointments.length === 0 ? (
-          <>
-            <div className="pend-container">
-              <div className="pends">
-                <img src={emptybox} className="box" />
-              </div>
-              <p>No pending appointments</p>
+        <div className="penders-container">
+          <Headers />
+          {loading ? (
+            <div className="spinner-container">
+              <Loaders /> {/* Display spinner while loading */}
             </div>
-          </>
-        ) : (
-          <div className="pending-appointments-grid">
-            {pendingAppointments &&
-              pendingAppointments.map((appointment) => {
-                const startTime = new Date(appointment.startTime);
-                const adjustedTime = new Date(
-                  startTime.getTime() - 1 * 60 * 60 * 1000
-                );
-                return (
-                  <div key={appointment._id} className="pending-state">
-                    <div className="pend-date">
-                      <p>
-                        {new Date(appointment.updatedAt).toLocaleDateString(
-                          "en-US",
-                          {
-                            weekday: "long",
-                          }
-                        )}
-                      </p>
-                      <h3>
-                        {new Date(appointment.updatedAt).toLocaleDateString(
-                          "en-US",
-                          {
-                            day: "numeric",
-                            month: "short",
-                          }
-                        )}
-                      </h3>
-                      <p>
-                        {adjustedTime.toLocaleTimeString("en-US", {
-                          hour: "numeric",
-                          minute: "numeric",
-                          second: "numeric",
-                          hour12: true,
-                        })}
-                      </p>
-                    </div>
-                    <span className="vertical-line"></span>
-                    <div className="patient-type">
-                      <h2>{user ? user.name : ""}</h2>
-                      <p>{appointment.type}</p>
-                    </div>
-                    <div className="patient-name">
-                      <p>Pending</p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        )}
-</div>
-        
+          ) : pendingAppointments.length === 0 ? (
+            <>
+              <div className="pend-container">
+                <div className="pends">
+                  <img src={emptybox} className="box" alt="Empty box" />
+                </div>
+                <p>No pending appointments</p>
+              </div>
+            </>
+          ) : (
+            <div className="pending-appointments-grid">
+              {pendingAppointments &&
+                pendingAppointments
+                  .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+                  .map((appointment) => {
+                    const startTime = moment.utc(appointment.startTime);
+                    const appointmentDate = startTime.format("D MMM"); // Format date
+                    const appointmentDay = startTime.format("dddd"); // Format day
+                    const appointmentTime = startTime.format("h:mm A"); // Format time
+                    console.log(appointmentTime);
+
+                    return (
+                      <div key={appointment._id} className="pending-state">
+                        <div className="pend-date">
+                          <p>{appointmentDay}</p>
+                          <h3>{appointmentDate}</h3>
+                          <p>{appointmentTime}</p>
+                        </div>
+                        <span className="vertical-line3"></span>
+                        <div className="patient-type">
+                          <h2>{appointment.doctorName}</h2>
+                          <p>{appointment.type}</p>
+                        </div>
+                        <div className="patient-name">
+                          <div className="namep">
+                            <p>Pending</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    );
+                  })}
+            </div>
+          )}
         </div>
+      </div>
     </>
   );
 };

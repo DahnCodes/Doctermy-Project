@@ -48,7 +48,7 @@
     background-color: #55CDE5;
   }
   .good{
-    color: #00B4D8;
+    color: #00CB51;
     font-size: 43.33px;
   }
 
@@ -73,9 +73,11 @@
     height: 245px;
     max-width: 80%;
   }
-
+.modal-content h3{
+  text-align: center;
+}
 .text-area{
-width: 330px;
+width: 360px;
 height: 90px;
 margin-top: 30px;
 border-radius: 8px;
@@ -93,15 +95,25 @@ padding: 10px;
   border-radius: 8px;
  /* grid-gap: 1rem */
 }
+.btn10:hover{
+  background-color: #55cde5;
+  color: #ffff;
+  transition: 0.3s ease-in-out;
+}
 .btn11{
   width: 110px;
   height: 37px;
-  background-color: #00B4D8;
+  background-color: transparent;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  border: none;
-  color: white;
+  border: 2px solid  #00B4D8;
+  color: #00B4D8;
   border-radius: 8px;   
+}
+.btn11:hover{
+  border: 2px solid #55cde5;
+  color: #55cde5;
+  transition: 0.3s ease-in-out;
 }
 .btnss{
   display: flex;

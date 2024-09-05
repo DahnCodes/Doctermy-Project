@@ -85,7 +85,7 @@
 
 .clocks {
   position: absolute;
-  top: 745px;
+  top: 805px;
   left: -45px;
 }
 
@@ -170,9 +170,12 @@
   color: red;
   text-align: center;
 }
-.password-conditions{
-    text-align: center;
-    margin-left: -22px;
+.password p{
+    text-align: left;
+    /* margin-left: -22px; */
+  /* color: red; */
+  font-size: 12px; 
+  margin-top: 10px;
 
 }
 .logos{
@@ -182,4 +185,16 @@
 
 .loginp{
     margin-top: 30px;
+}
+@media only screen and (max-width: 768px){
+  .doctermy{
+    display: none;
+  }
+  .form-containers{
+    position: relative;
+    right: 300px;
+    width: 480px;
+    margin: 40px 0;
+    border-radius: 0px;
+  }
 }
