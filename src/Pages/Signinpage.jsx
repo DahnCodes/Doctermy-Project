@@ -158,7 +158,7 @@ function SignIn() {
                   </label>
                   <a href="#" className="forgot">Forgot password?</a>
                 </div> */}
-                <button type="submit">Log In</button>
+                <button type="submit" className="submit-btn">Log In</button>
               </div>
               <p className="loginp">
                 Don’t have an account? <a href="/signup">Create Account</a>

@@ -93,8 +93,8 @@ function SignUp() {
           </div>
         )}
         <div className="contain-items">
-          <img src={doctermy} className="doctermy" />
-          <img src={steth} className="steth" />
+          <img src={doctermy} className="doctermys" />
+          <img src={steth} className="steths" />
           <img src={clock} className="clocks" />
         </div>
 

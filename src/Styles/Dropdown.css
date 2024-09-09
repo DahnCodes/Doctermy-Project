@@ -13,31 +13,46 @@
 
 .dropdown-menu {
   position: absolute;
-  right: 0;
-  top: 100%;
-  width: 150px;
+  right: 0; /* Aligns the dropdown to the right of the container */
+  top: 200%; /* Ensures the dropdown appears just below the button */
+  width: auto; /* Auto size the dropdown based on content */
+  max-width: 300px; /* Constrain max width for larger screens */
   background-color: white;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  z-index: 1;
+  width: 100%;
+ /* Adding padding for better spacing */
+  /* padding-bottom: 10px; */
 }
 
 .dropdown-item {
-  padding: 10px 20px;
+  padding: 10px 36px; /* More padding inside dropdown items */
   cursor: pointer;
   border: none;
   background-color: transparent;
-  width: 100%;
+  width: 400%; /* Ensure dropdown items fit within their parent */
   text-align: left;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center   ; /* Align content to the left */
   gap: 8px;
 }
 
 .dropdown-item:hover {
   background-color: #f1f1f1;
 }
+
 .logout {
   color: #858585;
+}
+
+/* Adjustments for mobile screens */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    right: 0; /* Align dropdown to the right of the screen */
+    left: 0; /* Ensures the dropdown is centered below the button */
+    width: 90vw; /* Set to 90% of the viewport width to fit smaller screens */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
 }

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import "../Styles/Accordion.css"
+import "../Styles/Secondaccordion.css";
 // import "./App.css"
 import { IoClose } from "react-icons/io5";
 
-const Accordion = () => {
+const Accordions = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -14,7 +15,7 @@ const Accordion = () => {
   return (
     <div className="accordion-item">
       <div className="accordion-header" onClick={toggleAccordion}>
-        <h3>Are the doctors available throughout the day?</h3>
+        <h3>How to book an appointment</h3>
         <span>{isOpen ? <IoClose className="clo" /> : <FaPlus className="clo"/>}</span>
       </div>
       {isOpen && <div className="accordion-content">FAQs</div>}
@@ -22,4 +23,4 @@ const Accordion = () => {
   );
 };
 
-export default Accordion;
+export default Accordions;

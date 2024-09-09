@@ -2,14 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* overflow-x: hidden; */
 }
-/* body{
-  background-color: #B1B1B1;
-} */
+body{
+padding-bottom: 15vh;
+
+}
 .dash-navigation {
   display: flex;
   justify-content: space-between;
-  padding: 30px 40px;
+  padding: 0px 40px;
   height: 65px;
   align-items: center;
   background-color: #00b4d8;
@@ -31,7 +33,7 @@
 .pfps {
   margin-bottom: -3px;
 }
-.pfp{
+.pfp {
   font-size: 19px;
 }
 .profile {
@@ -45,20 +47,20 @@
 }
 .app-header {
   display: flex;
-  gap: 100px;
+  gap: 20px;
   justify-content: space-between;
   padding: 15px;
   height: 65px;
   align-items: center;
   background-color: #ffffff;
-  width: 89vw;
+  width: 90vw;
 }
 .item11 {
   grid-area: header;
   background-color: white;
   min-height: 300vh;
   padding: 20px;
-  width: 130px;
+  width: 140px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
 }
 /* { 
@@ -95,7 +97,6 @@
 }
 .home {
   font-size: 32px;
-
 }
 .item2 {
   grid-area: menu;
@@ -130,11 +131,12 @@
 .welcome {
   /* background-color: white; */
   /* width: 470px; */
-  height: 100px;
-  padding: 20px;
+  /* height: 120px; */
+  padding: 30px;
   margin-top: 0px;
   margin-left: -30px;
   border-radius: 10px;
+  /* width: 50vw; */
 }
 .welcome h4 {
   font-size: 32px;
@@ -153,7 +155,7 @@
 .needs {
   background-color: white;
   width: 299px;
-  height: 100px;
+  height: 120px;
   padding: 20px;
   border-radius: 10px;
   margin-top: 10px;
@@ -174,7 +176,7 @@
   font-weight: 600;
   cursor: pointer;
 }
-.btn4:hover{
+.btn4:hover {
   background-color: #55cde5;
 }
 .main-text {
@@ -199,12 +201,12 @@
   max-width: 100%;
   margin-top: 20px;
 }
-.hrz{
+.hrz {
   max-width: 200%;
   margin-right: -30px;
 }
-.hrs{
-  max-width: 10%
+.hrs {
+  max-width: 10%;
 }
 .app-detail {
   display: flex;
@@ -275,7 +277,7 @@
   /* margin-top: 70px; */
   display: flex;
   width: 286px;
-  height: 100px;
+  height: 120px;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -284,16 +286,15 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  
 }
 .hospital {
   width: 156px;
-  height: 79px;
+  height: 100px;
 }
 .cards-location h4 {
   font-size: 14px;
   margin-top: -10px;
-  line-height:20px;
+  line-height: 20px;
 }
 .cards-location p {
   font-size: 14px;
@@ -335,7 +336,7 @@
   align-items: center;
   margin-top: 15%;
   position: relative;
-  right: 420% ;
+  right: 420%;
 }
 .pend-container p {
   color: #858585;
@@ -370,7 +371,6 @@
   gap: 20px; /* Space between each grid item */
   padding: 20px; /* Padding around the grid */
   margin-left: 30px;
- 
 }
 .pending-state {
   display: flex;
@@ -404,9 +404,9 @@
   background-color: #ffff;
   /* margin-left: -120px; */
   position: relative;
- right: 120px;
+  right: 120px;
 }
-.pending-state2 h3{
+.pending-state2 h3 {
   font-weight: bold;
 }
 .vertical-line {
@@ -445,15 +445,15 @@
 }
 .patient-name {
   border-radius: 8px;
-  opacity: 0.8; 
-  border: 2px solid #F6B95E;
+  opacity: 0.8;
+  border: 2px solid #f6b95e;
 }
-.namep{
+.namep {
   padding: 5px, 10px, 5px, 10px;
   width: 96px;
   height: 27px;
   text-align: center;
-  color: #F6B95E;
+  color: #f6b95e;
 }
 .patient-type1 {
   margin-right: 320px;
@@ -540,7 +540,7 @@ tr {
   border-bottom: 1px solid #ddd;
 }
 
-.view-all-btn{
+.view-all-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -551,16 +551,181 @@ tr {
 }
 
 .home.active {
-color: #00b4d8; /* or any color you prefer */
-
+  color: #00b4d8; /* or any color you prefer */
 }
 .calendar.active {
-color: #00b4d8; /* or any color you prefer */
-
+  color: #00b4d8; /* or any color you prefer */
 }
-.lines{
+.lines {
   background-color: #0096b4;
 }
-.second-item{
+.second-item {
   margin-left: 60px;
+}
+@media (max-width: 768px) {
+  
+  /* Move item11 to the bottom of the screen */
+  .item11 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 10vh; /* Adjust the height as needed */
+    padding: 0px;
+    margin: 0;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Add shadow on top */
+    z-index: 1; /* Ensure it's on top of other elements */
+  }
+
+  .item-icons {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    color: #858585;
+    /* gap: 20px */
+  }
+  .item-icons div {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-header {
+    display: flex;
+    gap: 0px;
+    justify-content: space-between;
+    padding: 15px;
+    height: 65px;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100vw;
+  }
+  .container {
+    align-items: flex-start;
+    padding: 0 7%;
+    /* justify-content: center; */
+    gap:  0px;  
+
+ padding-left: 10px;
+    margin-top: 25px;
+    width: 100%;
+    margin-left: 60px;
+  }
+  .welcome{
+    width: 100vw;
+  height: auto;
+  }
+  
+  .needs {
+    width: 399px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    left: -50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .card{
+    display: none;
+  }
+  hr{
+    width: 98%;
+  }
+  .calendar {
+    margin-top: 30px;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  .home {
+    font-size: 32px;
+    margin-top: 30px;
+
+  }
+}
+@media (max-width: 425px){
+  .nav-icons{
+    display: none;
+  }
+  .item11 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 10vh; /* Adjust the height as needed */
+    padding: 0px;
+    margin: 0;
+    box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.15); /* Add shadow on top */
+    z-index: 1; /* Ensure it's on top of other elements */
+  }
+
+  .item-icons {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    color: #858585;
+    /* gap: 20px */
+  }
+  .item-icons div {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-header {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 65px;
+    font-size: 12px;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100vw;
+    
+  }
+  .container {
+    align-items: flex-start;
+    padding: 0 7%;
+    /* justify-content: center; */
+    gap:  0px;  
+
+ padding-left: 10px;
+    margin-top: 25px;
+    width: 100%;
+    margin-left: 60px;
+  }
+  .welcome{
+    width: 100vw;
+  height: auto;
+  }
+  
+  .needs {
+    width: 399px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+    left: -50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .card{
+    display: none;
+  }
+  hr{
+    width: 98%;
+  }
+  .calendar {
+    margin-top: 30px;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  .home {
+    font-size: 32px;
+    margin-top: 30px;
+
+  }
 }

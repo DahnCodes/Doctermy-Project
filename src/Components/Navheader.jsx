@@ -4,7 +4,6 @@ import "../App.css"
 const Navheader = () => {
   return (
     <div className="calls-container">
-      <div className="call-line">
         <div className="call-linelist">
           <p className="call-p">Emergency Response Service</p>
           <p className="call-a">In case of an emergency, call this line </p>
@@ -13,7 +12,6 @@ const Navheader = () => {
             08085167132
           </p>
         </div>
-      </div>
     </div>
   );
 };

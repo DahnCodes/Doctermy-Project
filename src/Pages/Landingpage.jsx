@@ -14,15 +14,19 @@ import quote from "../assets/quotes.png";
 import quoteend from "../assets/quoteend.png";
 import Navheader from "../Components/Navheader";
 import billboard from "../assets/billboard.jpg";
-import Accordion from "../Components/Accordion";
+// import Accordion from "../Components/Accordions";
 import { useNavigate } from "react-router-dom";
 
-const Landingpage = () => {
-  const navigate = useNavigate();
+import Accordions from "../Components/Accordions";
+import Fifthaccordion from "../Components/Fifthaccordion";
+import Secondaccordion from "../Components/Secondaccordion";
+import Thirdaccordion from "../Components/Thirdaccordion";
+import Fourthaccordion from "../Components/Fourthaccordion";
+import Firstaccordion from "../Components/Firstaccordion";
+import { IoMdStar } from "react-icons/io";
 
-  const getAppointment = () => {
-    navigate("/bookappointment");
-  };
+const Landingpage = () => {
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -32,16 +36,15 @@ const Landingpage = () => {
           <Navigationbar />
           <div className="hero-container">
             <div className="hero-text">
-              <h1>
-                Meet with your doctor more conveniently.
-              </h1>
+              <h1>Streamlined appointments for better healthcare.</h1>
 
               <p>
-            Let us help you book appointments with doctors more efficiently. Be at the hospital when you absolutely need to be.
+                Seamlessly manage your appointment booking with us. Have
+                patients at hospital or clinic when they absolutely need to be.{" "}
               </p>
               <div className="button-container">
-                <button className="btn3" onClick={getAppointment}>
-                 Book Appointment
+                <button className="btn3">
+                  Partner With Us
                   <FaArrowRight className="arrow" />
                 </button>
               </div>
@@ -53,12 +56,9 @@ const Landingpage = () => {
         </div>
       </div>
       <main className="body-container">
-
-
-
         <div className="about-us">
           <div className="about-text">
-            <h3>About Us</h3>
+            <h2>About Us</h2>
             <p>
               Doctermy is an appointment booking system for hospitals. Dedicated
               to transforming the management of healthcare services, we offer an
@@ -90,26 +90,6 @@ const Landingpage = () => {
           </div>
         </div>
 
-        {/* <div className="reviews">
-          <div className="review-img">
-            <img src={randr} className="rev-img" />
-          </div>
-
-          <div className="review-text">
-            <h2>
-              Hear from our<br></br> users{" "}
-              </h2>
-              <p>
-              With the service we provide there has been<br></br> testimonies.
-              People have been able to save time<br></br> and prevent queueing
-              just to receive appointments<br></br> and a more organized
-              hospital atmosphere.
-            </p>
-            
-            <button className="read-more">Read More</button>
-            </div>
-            </div> */}
-
         <div className="benefit-container">
           <div className="benefit-text">
             <h2>Benefits of using Doctermy</h2>
@@ -117,22 +97,23 @@ const Landingpage = () => {
 
           <div className="benefit-cards-container">
             <div className="benefit-cards">
-              <img src={hands} alt="" />
-              <h3>Better Healthcare Service</h3>
-              <p>
-                Be at the hospital when you absolutely need to be! With our
-                appointment booking system, patients can be at the hospital only
-                when the doctor is available. This will help reduce queues, time
-                wasting and disorganized medical service.
+              <img src={hands} alt="" className="book" />
+              <h3 className="books">Better Healthcare Service</h3>
+              <p className="books">
+                Be at the hospital or clinic when you absolutely need to be! With
+                our appointment booking system, patients can be at the hospital
+                only when they have an appointment. This will help reduce
+                queues, time wasting and disorganized medical service.
               </p>
             </div>
             <div className="benefit-cards">
               <img src={icons} alt="" />
-              <h3>New Clients</h3>
+              <h3>Enhanced Patient Experience</h3>
               <p>
-                An enhanced client experience will attract more clients in need
-                of better healthcare services. As time is important to patients
-                and doctors alike, so are new clients to the hospital.
+                A satisfactory patient experience is of major importance to
+                hospitals or clinics and healthcare service providers. A seamless
+                appointment booking process ensures patients feel valued and
+                cared for leading to stronger relationships and trust.
               </p>
             </div>
             <div className="benefit-cards">
@@ -174,11 +155,18 @@ const Landingpage = () => {
               <p>Hospital</p>
               <div className="rate">
                 <p>
-                  Since we've integrated this system to manage our medical
+                  Since we integrated this system to manage our medical
                   appointments and scheduling, it's been more organized and
                   efficient. This is an upgrade for this hospital and the health
                   sector in Nigeria.
                 </p>
+                <div className="stars">
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                </div>
               </div>
               <img src={quoteend} className="quoteend" />
             </div>
@@ -189,11 +177,18 @@ const Landingpage = () => {
               <p>Doctor</p>
               <div className="rate">
                 <p>
-                  Since we've integrated this system to manage our medical
-                  appointments and scheduling, it's been more organized and
+                  Since we integrated this system to manage our medical
+                  appointments and scheduling, it has been more organized and
                   efficient. This is an upgrade for this hospital and the health
                   sector in Nigeria.
                 </p>
+                <div className="stars">
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                </div>
               </div>
               <img src={quoteend} className="quoteend" />
             </div>
@@ -210,6 +205,13 @@ const Landingpage = () => {
                   efficient. This is an upgrade for this hospital and the health
                   sector in Nigeria.
                 </p>
+                <div className="stars">
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                  <IoMdStar />
+                </div>
               </div>
               <img src={quoteend} className="quoteend" />
             </div>
@@ -224,58 +226,59 @@ const Landingpage = () => {
               Have questions? Get them answered. Find answers to commonly asked
               questions.
             </p>
-          </div>
 
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-        </div>
-
-        <div className="demo">
-          <div className="phone">
-            <img src={device} alt="" className="device" />
+            <Firstaccordion />
+            <Secondaccordion />
+            <Thirdaccordion />
+            <Fourthaccordion />
+            <Fifthaccordion />
           </div>
-          <h3>
-          Want to get affiliated with us?<br></br>
-          Request to see demo
-          </h3>
-          <button className="see-more">Request Demo</button>
         </div>
 
-      <div className="bodytexts">
-        <h2 className="body-text">Our Partners</h2>
-      </div>
-      
-      <div className="card-container">
-        <div className="cards">
-          <img src={billboard} className="hospitals" />
-          <h4>Sundune Memorial Hospital</h4>
-          <div className="card-location">
-            <FaLocationDot />
-            <p>Enugu, Enugu State</p>
+        <div className="demo-container">
+          <div className="demo">
+            <div className="phone-device">
+              <img src={device} alt="" className="device" />
+            </div>
+            <h3>
+              Want to get affiliated with us?<br></br>
+              Request to see demo
+            </h3>
+            <button className="see-more">Request Demo</button>
           </div>
         </div>
-      
-        <div className="cards">
-          <img src={billboard} className="hospitals" />
-          <h4>Romlon Hospital</h4>
-          <div className="card-location">
-            <FaLocationDot />
-            <p>Enugu, Enugu State</p>
+
+        <div className="partners">
+            <h2>Our Partners</h2>
+          <div className="card-container">
+            <div className="cards">
+              <img src={billboard} className="hospitals" />
+              <h4>Sundune Memorial Hospital</h4>
+              <div className="card-location">
+                <FaLocationDot />
+                <p>Enugu, Enugu State</p>
+              </div>
+            </div>
+
+            <div className="cards">
+              <img src={billboard} className="hospitals" />
+              <h4>Romlon Hospital</h4>
+              <div className="card-location">
+                <FaLocationDot />
+                <p>Enugu, Enugu State</p>
+              </div>
+            </div>
+
+            <div className="cards">
+              <img src={billboard} className="hospitals" />
+              <h4>Delogwu Hospital</h4>
+              <div className="card-location">
+                <FaLocationDot />
+                <p>Enugu, Enugu State</p>
+              </div>
+            </div>
           </div>
         </div>
-      
-        <div className="cards">
-          <img src={billboard} className="hospitals" />
-          <h4>Delogwu Hospital</h4>
-          <div className="card-location">
-            <FaLocationDot />
-            <p>Enugu, Enugu State</p>
-          </div>
-        </div>
-      </div>
       </main>
       <Footer />
     </>

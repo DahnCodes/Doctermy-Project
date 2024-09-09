@@ -169,3 +169,23 @@ cursor: pointer;
   color: #00b4d8;
   font-size: 18px;
 }
+.badge-count {
+  background-color: #00B4D8;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  width: 27px;
+  height: 27px;
+  font-size: 12px;
+  margin-left: 30px;
+  display: inline-block;
+}
+@media (max-width: 768px){
+  .grid-king{
+    display: grid;
+    grid-template-areas: 
+    "mainbar mainbar mainbar mainbar mainbar mainbar"
+    "mainbar   mainbar mainbar mainbar mainbar mainbar"
+    "sidebar sidebar sidebar sidebar sidebar sidebar";
+}
+}
